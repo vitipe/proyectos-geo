@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>¿A qué playa voy?</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="../comun.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="mapa"></div>
+
+  <aside id="panel">
+    <header>
+      <a class="volver" href="../">Todos los mapas</a>
+      <h1>¿A qué playa voy?</h1>
+      <p class="sub">Viento, sol y sombra de edificios, de Playa Grande a La Perla</p>
+      <p id="estado" class="sub"></p>
+    </header>
+
+    <section class="controles">
+      <div class="dias" id="dias" role="group" aria-label="Día"></div>
+      <label for="hora">Hora <strong id="hora-valor"></strong></label>
+      <input type="range" id="hora" min="480" max="1260" step="30">
+    </section>
+
+    <section>
+      <div id="recomendacion" class="recomendacion"></div>
+      <dl id="condiciones" class="condiciones"></dl>
+      <p id="alerta" class="aviso" hidden></p>
+    </section>
+
+    <section>
+      <h2>Ranking</h2>
+      <ol id="ranking" class="ranking"></ol>
+    </section>
+
+    <section>
+      <h2>Mejor horario del día</h2>
+      <div class="grafico"><canvas id="grafico"></canvas></div>
+    </section>
+
+    <section>
+      <label for="prioridad">Qué te importa más <strong id="prioridad-valor"></strong></label>
+      <input type="range" id="prioridad" min="0" max="100" step="10" value="60">
+      <div class="extremos"><span>Sol</span><span>Reparo del viento</span></div>
+      <label class="check"><input type="checkbox" id="ver-sombras" checked> Ver sombras en el mapa</label>
+      <p class="nota">Pronóstico de Open-Meteo. Edificios, playas y línea de costa de OpenStreetMap,
+        con las alturas que cargaste en el mapa de sombras.</p>
+    </section>
+  </aside>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/suncalc@1.9.0/suncalc.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="../sombras/osm-mdp.js"></script>
+  <script src="../sombras/sombras.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

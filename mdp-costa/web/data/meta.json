@@ -1,0 +1,11 @@
+{
+  "demo": true,
+  "anio_min": 1984,
+  "anio_max": 2026,
+  "periodos": [
+    "total",
+    "pre_1998",
+    "post_1998"
+  ],
+  "generado": "2026-10-20"
+}

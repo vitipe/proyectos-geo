@@ -1,0 +1,19 @@
+.fila { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; }
+.fila label { margin: 0; }
+.fila input[type=date] { flex: 1; }
+.dato { font-size: 13px; color: var(--texto-2); margin: 8px 0 0; }
+.playas { list-style: none; padding: 0; margin: 0 0 12px; display: grid; gap: 6px; }
+.playas li { border: 1px solid var(--borde); border-radius: 8px; padding: 8px 10px; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 2px 8px; }
+.playas li.activa { border-color: var(--acento); }
+.playas .nombre { font-size: 14px; font-weight: 600; }
+.playas .pct { font-size: 13px; font-variant-numeric: tabular-nums; }
+.playas .desde { grid-column: 1 / -1; font-size: 12px; color: var(--texto-2); }
+.grafico { height: 190px; }
+.controles input[type=range] { margin-bottom: 4px; }
+.leyenda-edificios { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--texto-2); margin: 12px 0 0; }
+.leyenda-edificios i { display: inline-block; width: 12px; height: 12px; border-radius: 2px; vertical-align: -2px; }
+.e-osm { background: #f1efe8; border: 1px solid #888780; }
+.e-manual { background: #b5d4f4; border: 1px solid #185fa5; }
+.e-estimada { background: #fac775; border: 1px solid #ba7517; }
+.popup { font-size: 13px; line-height: 1.6; }
+.popup button { padding: 2px 8px; font-size: 12px; }

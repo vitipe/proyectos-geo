@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sombras en la playa</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="../comun.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="mapa"></div>
+
+  <aside id="panel">
+    <header>
+      <a class="volver" href="../">Todos los mapas</a>
+      <h1>¿Hasta qué hora hay sol en la playa?</h1>
+      <p class="sub">Sombra de los edificios sobre Playa Grande, Varese, Bristol y La Perla</p>
+      <p id="estado" class="sub"></p>
+    </header>
+
+    <section class="controles">
+      <div class="fila">
+        <label for="fecha">Fecha</label>
+        <input type="date" id="fecha">
+        <button type="button" id="hoy">Hoy</button>
+      </div>
+      <label for="hora">Hora <strong id="hora-valor"></strong></label>
+      <input type="range" id="hora" min="420" max="1260" step="5">
+      <p id="sol" class="dato"></p>
+    </section>
+
+    <section>
+      <h2>Playas</h2>
+      <ul id="playas" class="playas"></ul>
+      <div class="grafico"><canvas id="grafico"></canvas></div>
+      <p class="nota">Porcentaje de la playa en sombra a lo largo de la tarde. Tocá una playa para ver su curva.</p>
+    </section>
+
+    <section>
+      <h2>Ajustes</h2>
+      <label for="desnivel">Desnivel entre la calle y la arena <strong id="desnivel-valor"></strong></label>
+      <input type="range" id="desnivel" min="0" max="15" step="0.5" value="0">
+      <label for="defecto">Altura de edificios sin dato <strong id="defecto-valor"></strong></label>
+      <input type="range" id="defecto" min="3" max="30" step="1" value="6">
+      <div class="leyenda-edificios">
+        <span><i class="e-osm"></i> Altura de OSM</span>
+        <span><i class="e-manual"></i> Cargada por vos</span>
+        <span><i class="e-estimada"></i> Sin dato</span>
+      </div>
+      <p class="nota">Tocá un edificio para corregir sus pisos. Las correcciones se guardan en este navegador.</p>
+      <div class="fila">
+        <button type="button" id="exportar-alturas">Exportar alturas</button>
+        <button type="button" id="guardar-osm" hidden>Guardar datos OSM</button>
+      </div>
+    </section>
+  </aside>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/suncalc@1.9.0/suncalc.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="osm-mdp.js"></script>
+  <script src="sombras.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

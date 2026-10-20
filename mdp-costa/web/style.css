@@ -1,0 +1,9 @@
+:root { --anio-actual: #ffd23f; }
+.leyenda { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-top: 10px; font-size: 11px; color: var(--texto-2); text-align: center; }
+.leyenda .caja { height: 10px; border-radius: 2px; }
+.leyenda .extremos { grid-column: 1 / -1; display: flex; justify-content: space-between; }
+.leyenda-lineas { display: flex; gap: 16px; font-size: 12px; color: var(--texto-2); margin-top: 8px; }
+.linea { display: inline-block; width: 22px; height: 0; vertical-align: middle; }
+.linea.inicial { border-top: 2px dashed #9a9890; }
+.linea.actual { border-top: 3px solid #e0b100; }
+.vacio { font-size: 13px; color: var(--texto-2); margin: 0; }

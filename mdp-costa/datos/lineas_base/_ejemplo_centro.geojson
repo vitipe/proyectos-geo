@@ -1,0 +1,41 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "nombre": "centro",
+    "nota": "EJEMPLO aproximado para la demo. Para el análisis real dibujá datos/lineas_base/centro.geojson"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -57.5315,
+      -38.0135
+     ],
+     [
+      -57.535,
+      -38.007
+     ],
+     [
+      -57.541,
+      -38.003
+     ],
+     [
+      -57.5445,
+      -37.9985
+     ],
+     [
+      -57.5475,
+      -37.993
+     ],
+     [
+      -57.55,
+      -37.9875
+     ]
+    ]
+   }
+  }
+ ]
+}

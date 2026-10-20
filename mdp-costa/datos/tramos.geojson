@@ -1,0 +1,180 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "nombre": "norte_a",
+    "descripcion": "La Perla a Camet",
+    "nota": "Aproximado: verificar y ajustar en geojson.io (playa + 300-500 m de mar y de tierra)"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -57.562,
+       -37.99
+      ],
+      [
+       -57.538,
+       -37.986
+      ],
+      [
+       -57.522,
+       -37.91
+      ],
+      [
+       -57.546,
+       -37.906
+      ],
+      [
+       -57.562,
+       -37.99
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "nombre": "norte_b",
+    "descripcion": "Camet a Santa Clara del Mar",
+    "nota": "Aproximado: verificar y ajustar en geojson.io (playa + 300-500 m de mar y de tierra)"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -57.546,
+       -37.91
+      ],
+      [
+       -57.522,
+       -37.914
+      ],
+      [
+       -57.494,
+       -37.832
+      ],
+      [
+       -57.518,
+       -37.828
+      ],
+      [
+       -57.546,
+       -37.91
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "nombre": "centro",
+    "descripcion": "Cabo Corrientes a La Perla (Varese, Bristol, Popular)",
+    "nota": "Aproximado: verificar y ajustar en geojson.io (playa + 300-500 m de mar y de tierra)"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -57.558,
+       -37.984
+      ],
+      [
+       -57.538,
+       -37.984
+      ],
+      [
+       -57.52,
+       -38.016
+      ],
+      [
+       -57.54,
+       -38.016
+      ],
+      [
+       -57.558,
+       -37.984
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "nombre": "playa_grande",
+    "descripcion": "Escollera norte del puerto a Cabo Corrientes",
+    "nota": "Aproximado: verificar y ajustar en geojson.io (playa + 300-500 m de mar y de tierra)"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -57.54,
+       -38.014
+      ],
+      [
+       -57.518,
+       -38.014
+      ],
+      [
+       -57.518,
+       -38.04
+      ],
+      [
+       -57.543,
+       -38.04
+      ],
+      [
+       -57.54,
+       -38.014
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "nombre": "punta_mogotes",
+    "descripcion": "Escollera sur del puerto a Punta Mogotes",
+    "nota": "Aproximado: verificar y ajustar en geojson.io (playa + 300-500 m de mar y de tierra)"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -57.56,
+       -38.045
+      ],
+      [
+       -57.525,
+       -38.045
+      ],
+      [
+       -57.53,
+       -38.1
+      ],
+      [
+       -57.565,
+       -38.1
+      ],
+      [
+       -57.56,
+       -38.045
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,4 @@
+.leyenda-clases { display: flex; gap: 16px; font-size: 12px; color: var(--texto-2); margin-top: 10px; }
+.leyenda-clases i { display: inline-block; width: 12px; height: 12px; border-radius: 2px; vertical-align: -2px; }
+#cifras { margin-top: 14px; }
+.grafico { height: 240px; }

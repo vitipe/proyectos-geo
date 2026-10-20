@@ -1,0 +1,30 @@
+.dias { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 14px; }
+.dias button { padding: 8px 6px; font-size: 13px; }
+.dias button[aria-pressed="true"] { border-color: var(--acento); color: var(--acento); font-weight: 600; }
+
+.recomendacion { border: 1px solid var(--borde); border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; }
+.recomendacion .titulo { font-size: 12px; color: var(--texto-2); margin: 0 0 2px; }
+.recomendacion .playa { font-size: 20px; font-weight: 600; margin: 0 0 4px; }
+.recomendacion .porque { font-size: 13px; color: var(--texto-2); margin: 0; line-height: 1.5; }
+
+.condiciones { grid-template-columns: auto 1fr; }
+
+.ranking { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.ranking li { border: 1px solid var(--borde); border-radius: 8px; padding: 8px 10px; display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; align-items: center; cursor: pointer; }
+.ranking li.activa { border-color: var(--acento); }
+.ranking .puntaje { grid-row: span 2; width: 40px; height: 40px; border-radius: 8px; display: grid; place-items: center; font-weight: 600; font-variant-numeric: tabular-nums; }
+.ranking .nombre { font-size: 14px; font-weight: 600; }
+.ranking .detalle { font-size: 12px; color: var(--texto-2); }
+
+.p-bueno { background: #c0dd97; color: #27500a; }
+.p-regular { background: #fac775; color: #633806; }
+.p-malo { background: #f5c4b3; color: #712b13; }
+
+.extremos { display: flex; justify-content: space-between; font-size: 11px; color: var(--texto-2); margin-top: 2px; }
+.check { display: flex; gap: 6px; align-items: center; margin-top: 14px; color: var(--texto); }
+.grafico { height: 210px; }
+
+.viento { background: var(--fondo); border: 1px solid var(--borde); border-radius: 8px; padding: 6px 8px; text-align: center; font-size: 11px; color: var(--texto-2); line-height: 1.3; }
+.viento svg { display: block; margin: 0 auto 2px; }
+.etiqueta-playa { background: transparent; border: 0; box-shadow: none; font-weight: 600; font-size: 12px; color: #1d1d1b; text-shadow: 0 0 3px #fff, 0 0 3px #fff; }
+.etiqueta-playa::before { display: none; }

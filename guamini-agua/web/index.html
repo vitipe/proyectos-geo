@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agua en Guaminí</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="../comun.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="mapa"></div>
+
+  <aside id="panel">
+    <header>
+      <a class="volver" href="../">Todos los mapas</a>
+      <h1>Agua en el partido de Guaminí</h1>
+      <p class="sub">Lagunas y anegamientos por año, 1984–hoy, a partir de imágenes Landsat</p>
+      <p id="aviso-demo" class="aviso" hidden>Datos sintéticos de demostración, no son mediciones reales.</p>
+    </header>
+
+    <section>
+      <label for="anio">Año <strong id="anio-valor"></strong></label>
+      <input type="range" id="anio" step="1">
+      <div class="leyenda-clases">
+        <span><i style="background:#1d4e89"></i> Agua permanente</span>
+        <span><i style="background:#8ecae6"></i> Agua estacional</span>
+      </div>
+      <dl id="cifras"></dl>
+    </section>
+
+    <section>
+      <div class="grafico"><canvas id="grafico"></canvas></div>
+      <p class="nota">Tocá una barra para ver ese año en el mapa.</p>
+    </section>
+  </aside>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

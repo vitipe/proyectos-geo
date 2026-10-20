@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mapas · Víctor Peñas</title>
+  <link rel="stylesheet" href="comun.css">
+  <style>
+    body { display: block; }
+    main { max-width: 760px; margin: 0 auto; padding: 48px 20px; }
+    h1 { font-size: 24px; margin-bottom: 6px; }
+    .intro { color: var(--texto-2); margin: 0 0 32px; line-height: 1.6; }
+    .tarjetas { display: grid; gap: 14px; }
+    .tarjeta { display: block; border: 1px solid var(--borde); border-radius: 12px; padding: 18px 20px; color: inherit; text-decoration: none; }
+    .tarjeta:hover { border-color: var(--acento); }
+    .tarjeta h2 { font-size: 17px; margin: 0 0 6px; }
+    .tarjeta p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--texto-2); }
+    .tarjeta .datos { margin-top: 10px; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Mapas</h1>
+    <p class="intro">Proyectos de geografía y desarrollo sobre Mar del Plata y el oeste bonaerense.</p>
+    <div class="tarjetas">
+      <a class="tarjeta" href="playa-hoy/">
+        <h2>¿A qué playa voy?</h2>
+        <p>Ranking de playas para la hora que elijas, según el viento pronosticado, la orientación de cada playa y la sombra de los edificios.</p>
+        <p class="datos">Open-Meteo · OpenStreetMap · SunCalc</p>
+      </a>
+      <a class="tarjeta" href="sombras/">
+        <h2>¿Hasta qué hora hay sol en la playa?</h2>
+        <p>Sombra de los edificios sobre Varese, Bristol y La Perla según la fecha y la hora.</p>
+        <p class="datos">OpenStreetMap · posición del sol con SunCalc</p>
+      </a>
+      <a class="tarjeta" href="mdp/">
+        <h2>Línea de costa de Mar del Plata, 1984–hoy</h2>
+        <p>Cuánto avanzó o retrocedió la costa en cada tramo, al norte y al sur del puerto.</p>
+        <p class="datos">Landsat y Sentinel-2 · CoastSat · Google Earth Engine</p>
+      </a>
+      <a class="tarjeta" href="guamini/">
+        <h2>Agua en el partido de Guaminí, 1984–hoy</h2>
+        <p>Lagunas y campos anegados año por año, comparados con la lluvia.</p>
+        <p class="datos">Landsat · JRC Global Surface Water · CHIRPS · Google Earth Engine</p>
+      </a>
+    </div>
+  </main>
+</body>
+</html>

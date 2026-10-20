@@ -1,0 +1,7 @@
+CoastSat/
+__pycache__/
+.ipynb_checkpoints/
+mdp-costa/salidas/
+mdp-costa/salidas_demo/
+guamini-agua/datos/*.csv
+_site/

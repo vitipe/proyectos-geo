@@ -1,0 +1,1 @@
+{"type": "FeatureCollection", "features": [{"type": "Feature", "properties": {"nombre": "Partido (demo)"}, "geometry": {"type": "Polygon", "coordinates": [[[-62.95, -37.35], [-62.05, -37.35], [-62.05, -36.65], [-62.95, -36.65], [-62.95, -37.35]]]}}]}

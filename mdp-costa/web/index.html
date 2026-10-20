@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Costa de Mar del Plata</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="../comun.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="mapa"></div>
+
+  <aside id="panel">
+    <header>
+      <a class="volver" href="../">Todos los mapas</a>
+      <h1>Línea de costa de Mar del Plata</h1>
+      <p class="sub">Cambio de la costa 1984–hoy a partir de imágenes Landsat y Sentinel-2</p>
+      <p id="aviso-demo" class="aviso" hidden>Datos sintéticos de demostración, no son mediciones reales.</p>
+    </header>
+
+    <section>
+      <label for="periodo">Tasa de cambio</label>
+      <select id="periodo"></select>
+      <div class="leyenda" id="leyenda"></div>
+    </section>
+
+    <section>
+      <label for="anio">Año <strong id="anio-valor"></strong></label>
+      <input type="range" id="anio" step="1">
+      <div class="leyenda-lineas">
+        <span><i class="linea inicial"></i> <span id="anio-inicial"></span></span>
+        <span><i class="linea actual"></i> año elegido</span>
+      </div>
+    </section>
+
+    <section id="detalle">
+      <p class="vacio">Tocá una transecta para ver su serie.</p>
+      <div id="detalle-contenido" hidden>
+        <h2 id="detalle-titulo"></h2>
+        <dl id="detalle-tasas"></dl>
+        <div class="grafico"><canvas id="grafico"></canvas></div>
+      </div>
+    </section>
+  </aside>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
