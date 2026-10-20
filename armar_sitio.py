@@ -13,7 +13,6 @@ MAPAS = {
     "sombras": RAIZ / "mdp-sombras" / "web",
     "playa-hoy": RAIZ / "mdp-playa-hoy" / "web",   # usa ../sombras/ (datos y geometría)
     "mdp": RAIZ / "mdp-costa" / "web",
-    "guamini": RAIZ / "guamini-agua" / "web",
 }
 
 if SITIO.exists():

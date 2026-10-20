@@ -7,15 +7,16 @@ de cada proyecto, ver `README.md` y el README de cada carpeta.
 
 Proyecto personal de Victor (geógrafo y desarrollador backend). Es un sitio
 estático con varios mapas en Leaflet sobre Mar del Plata y el oeste bonaerense,
-publicado en GitHub Pages. No hay build ni bundler, y el único backend son las
+publicado en GitHub Pages (https://vitipe.github.io/proyectos-geo/, repo
+`vitipe/proyectos-geo`). No hay build ni bundler, y el único backend son las
 APIs públicas que consultan las páginas.
 
 | Carpeta | Ruta en el sitio | Estado |
 |---|---|---|
-| `mdp-sombras/` | `/sombras/` | Funcional; nunca probado con datos reales de OSM |
-| `mdp-playa-hoy/` | `/playa-hoy/` | Funcional; nunca probado con datos reales; constantes del modelo sin calibrar |
+| `mdp-sombras/` | `/sombras/` | Funcional con snapshot real de OSM; faltan alturas (la mayoría usa la altura por defecto) |
+| `mdp-playa-hoy/` | `/playa-hoy/` | Funcional con el snapshot de sombras; constantes del modelo sin calibrar |
 | `mdp-costa/` | `/mdp/` | Pipeline escrito pero nunca corrido; `web/data` tiene datos sintéticos |
-| `guamini-agua/` | `/guamini/` | Pipeline escrito pero nunca corrido; `web/data` tiene datos sintéticos |
+| `guamini-agua/` | — | No se publica acá: va al sitio de nodoagro. Pipeline nunca corrido; datos sintéticos |
 | `sitio/` | `/` | Portada y `comun.css` (tokens de color, modo oscuro, layout mapa + panel) |
 
 ## Correr y verificar
@@ -64,9 +65,12 @@ la carga del snapshot y de las alturas, y helpers de fecha con UTC−3 fijo.
 - **Sintéticos:** `mdp-costa/web/data` y `guamini-agua/web/data` vienen de las
   demos. Llevan `"demo": true` en `meta.json` / `serie.json`, y la página
   muestra un aviso. No presentarlos nunca como datos reales.
-- **OSM:** `mdp-sombras/web/data/osm.json` todavía no existe. Si falta, la
-  página consulta Overpass y guarda el resultado 30 días en localStorage
-  (`sombras-osm-v2`). Si cambia la consulta, subir la versión de la clave.
+- **OSM:** `mdp-sombras/web/data/osm.json` es el snapshot de Overpass
+  (octubre de 2026; el comando para regenerarlo está en `mdp-sombras/README.md`).
+  Si falta, la página consulta Overpass y guarda el resultado 30 días en
+  localStorage (`sombras-osm-v2`). Si cambia la consulta, subir la versión de
+  la clave y regenerar el snapshot. Las relaciones (Playa Grande, algunos
+  edificios) traen el borde partido en varias vías: `unirAnillos` las encadena.
 - **Alturas:** `data/alturas.json` (pisos por id de OSM) se combina con las
   correcciones locales del navegador (`sombras-alturas`).
 - **Earth Engine:** `GEE_PROJECT` es un placeholder en los dos `config.py`.
@@ -84,8 +88,8 @@ la carga del snapshot y de las alturas, y helpers de fecha con UTC−3 fijo.
 
 ## Pendientes conocidos
 
-- Agregar `.github/workflows/pages.yml` si todavía no está (el archivo existe
-  pero no se pudo copiar con las herramientas remotas).
+- Alturas en sombras: casi ningún edificio de la primera línea de Playa Grande
+  y La Perla tiene altura en OSM. Victor las carga a mano y exporta `data/alturas.json`.
 - `mdp-costa/datos/tramos.geojson`: los polígonos son aproximados; hay que
   ajustarlos antes de descargar imágenes.
 - `CASBAS_LONLAT` y el nombre del dataset GHSL en `05_casbas_urbano.py`: verificar.

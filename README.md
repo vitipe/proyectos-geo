@@ -18,7 +18,7 @@ el mismo entorno de Python y el mismo proyecto de Earth Engine.
 | Cuándo | Qué | Tiempo estimado |
 |---|---|---|
 | Ahora | Fase 0: cuentas, entorno y demos | 2–3 h |
-| Cuando quieras | Sombras y playa de hoy: datos de OSM y alturas | 2–3 sesiones |
+| Cuando quieras | Sombras y playa de hoy: alturas (los datos de OSM ya están) | 1–2 sesiones |
 | Noviembre–diciembre, desde Casbas | Guaminí fases 1–6 | 4–5 sesiones de 2–3 h |
 | Enero, en Mar del Plata | Mar del Plata fases 1–7; calibrar sombras y viento en la playa | 6–8 sesiones de 2–3 h |
 | Febrero | Publicar el sitio, fase Casbas urbano | 2–3 sesiones |
@@ -70,12 +70,13 @@ llegás a Mar del Plata con todo eso resuelto y te enfocás en la costa.
 | `/` | Portada (`sitio/index.html`) |
 | `/sombras/` | `mdp-sombras/web` |
 | `/playa-hoy/` | `mdp-playa-hoy/web` (usa datos y código de `/sombras/`) |
-| `/mdp/` | `mdp-costa/web` |
-| `/guamini/` | `guamini-agua/web` |
+| `/mdp/` | `mdp-costa/web` (con datos de demostración hasta correr el pipeline) |
+
+`guamini-agua/` no entra en este sitio: se va a publicar en el sitio de nodoagro.
 
 `.github/workflows/pages.yml` corre ese mismo script y publica en GitHub Pages
-cada vez que hacés push a `main`. En el repo de GitHub: Settings → Pages →
-Source: GitHub Actions.
+(https://vitipe.github.io/proyectos-geo/) cada vez que hacés push a `main`. En
+el repo de GitHub: Settings → Pages → Source: GitHub Actions.
 
 Para sumar un mapa nuevo: creá su carpeta con un `web/` que enlace
 `../comun.css`, agregalo a `MAPAS` en `armar_sitio.py` y sumá su tarjeta en la portada.

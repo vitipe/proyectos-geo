@@ -14,6 +14,35 @@
     };
   }
 
+  const igual = (a, b) => a[0] === b[0] && a[1] === b[1];
+  const cerrado = (ll) => ll.length >= 4 && igual(ll[0], ll.at(-1));
+
+  // Las relaciones suelen traer el borde exterior partido en varias vías.
+  // Encadena las abiertas por sus extremos (invirtiéndolas si hace falta);
+  // lo que no llega a cerrar se descarta.
+  function unirAnillos(lineas) {
+    const anillos = lineas.filter(cerrado);
+    const sueltas = lineas.filter((l) => !cerrado(l));
+    while (sueltas.length) {
+      let actual = sueltas.shift();
+      let unio = true;
+      while (!cerrado(actual) && unio) {
+        unio = false;
+        for (let i = 0; i < sueltas.length; i++) {
+          const l = sueltas[i];
+          if (igual(actual.at(-1), l[0])) actual = actual.concat(l.slice(1));
+          else if (igual(actual.at(-1), l.at(-1))) actual = actual.concat(l.slice(0, -1).reverse());
+          else continue;
+          sueltas.splice(i, 1);
+          unio = true;
+          break;
+        }
+      }
+      if (cerrado(actual)) anillos.push(actual);
+    }
+    return anillos;
+  }
+
   // Elementos de Overpass ("out geom") -> edificios y playas con anillos [lon, lat]
   function parsearOSM(osm) {
     const edificios = [];
@@ -26,15 +55,15 @@
         costas.push({ id: `way/${el.id}`, ll: el.geometry.map((p) => [p.lon, p.lat]) });
         continue;
       }
+      const aLL = (g) => g.map((p) => [p.lon, p.lat]);
       let anillos = [];
-      if (el.type === "way" && el.geometry) anillos = [el.geometry];
+      if (el.type === "way" && el.geometry) anillos = [aLL(el.geometry)].filter(cerrado);
       else if (el.type === "relation" && el.members) {
-        anillos = el.members.filter((m) => m.role === "outer" && m.geometry).map((m) => m.geometry);
+        // rol vacío: miembros viejos sin etiquetar, que OSM toma como "outer"
+        const exteriores = el.members.filter((m) => (m.role === "outer" || m.role === "") && m.geometry);
+        anillos = unirAnillos(exteriores.map((m) => aLL(m.geometry)));
       }
-      anillos.forEach((g, i) => {
-        const ll = g.map((p) => [p.lon, p.lat]);
-        const cerrado = ll.length >= 4 && ll[0][0] === ll.at(-1)[0] && ll[0][1] === ll.at(-1)[1];
-        if (!cerrado) return; // anillos de relaciones partidos en varias vías: se omiten
+      anillos.forEach((ll, i) => {
         const id = `${el.type}/${el.id}${anillos.length > 1 ? "#" + i : ""}`;
         if (t.building || t["building:part"]) edificios.push({ id, tags: t, ll });
         else if (t.natural === "beach") playas.push({ id, nombre: t.name || null, ll });

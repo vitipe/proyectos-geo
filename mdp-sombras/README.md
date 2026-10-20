@@ -28,28 +28,53 @@ Desde la raíz de `proyectos-geo`:
 python armar_sitio.py && python -m http.server 8000 -d _site
 ```
 
-Abrí http://localhost:8000/sombras/. La primera vez descarga los datos de
-OpenStreetMap con Overpass (unos segundos) y los guarda en el navegador por 30 días.
+Abrí http://localhost:8000/sombras/. Lee el snapshot de `web/data/osm.json`; si
+falta, descarga los datos de OpenStreetMap con Overpass (unos segundos) y los
+guarda en el navegador por 30 días.
+
+Publicado en https://vitipe.github.io/proyectos-geo/sombras/.
 
 ## Plan
 
-### Fase 1: datos reales (1 sesión)
+### Fase 1: datos reales (hecha en octubre de 2026)
 
-1. Abrí la página y esperá la descarga de Overpass.
-2. Tocá **Guardar datos OSM** y mové el archivo a `mdp-sombras/web/data/osm.json`.
-   Desde ese momento la página usa el snapshot: carga al instante y no depende de Overpass.
-3. Revisá el mapa: ¿las playas de OSM coinciden con las que conocés? Si alguna
-   no tiene nombre en OSM, aparece como "Playa 1", "Playa 2", etc.
+`web/data/osm.json` es un snapshot de OpenStreetMap con 1.144 edificios, 9 playas
+y la línea de costa. Con él la página carga al instante y no depende de Overpass.
+
+Para actualizarlo (por ejemplo, después de subir alturas a OSM), desde la raíz del repo:
+
+```
+node -p 'require("./mdp-sombras/web/osm-mdp.js").OsmMdp.CONSULTA' \
+  | curl -s -f -A "proyectos-geo (github.com/vitipe/proyectos-geo)" --data-urlencode data@- \
+      https://overpass-api.de/api/interpreter \
+  | python3 -c 'import json,sys; json.dump(json.load(sys.stdin), sys.stdout, separators=(",",":"), ensure_ascii=False)' \
+  > mdp-sombras/web/data/osm.json
+```
+
+Overpass rechaza el User-Agent por defecto de curl (responde 406), por eso va el `-A`.
+También sirve el botón **Guardar datos OSM**, que aparece cuando la página no encuentra el snapshot.
+
+Pendiente: dos playas no tienen nombre en OSM y aparecen como "Playa N":
+`way/1251478745` (al sur de Playa Grande, -38.0392, -57.5365) y `way/1338991102`
+(al este de Las Toscas, -38.0076, -57.5340). Lo mejor es ponerles nombre en OSM y
+regenerar el snapshot.
 
 ### Fase 2: alturas de los edificios que importan (1–2 sesiones)
 
 Las sombras sobre la playa las proyectan sobre todo las torres de las primeras
 cuadras. Los edificios en ámbar no tienen altura en OSM.
 
+En el snapshot de octubre de 2026, de los edificios a menos de 250 m de cada
+playa tenían altura: Playa Grande 0 de 108, La Perla 11 de 156, Bristol 45 de 131,
+Varese 75 de 149 y Las Toscas 64 de 161. Conviene empezar por Playa Grande y La Perla.
+
 1. Tocá cada edificio en ámbar de las primeras dos o tres cuadras y cargá sus
-   pisos. Podés contarlos con Street View o en persona.
+   pisos. Podés contarlos con Street View o en persona. Alcanza con los de 4 pisos
+   o más: los bajos andan bien con la altura por defecto (6 m).
 2. Tocá **Exportar alturas** y guardá el archivo como `mdp-sombras/web/data/alturas.json`.
-   Así quedan en el repo y en el sitio publicado, no solo en tu navegador.
+   Así quedan en el repo y en el sitio publicado, no solo en tu navegador. Las
+   correcciones del navegador son por sitio: lo que cargues en localhost no
+   aparece en vitipe.github.io, y al revés.
 3. Opcional y recomendable: subí esos `building:levels` a OpenStreetMap. Mejora
    el mapa para todos y en el próximo snapshot ya vienen incluidos.
 
@@ -66,9 +91,9 @@ El modelo supone el terreno plano, pero la arena está más baja que la calle.
 
 ### Fase 4: publicar
 
-Con `data/osm.json` y `data/alturas.json` en el repo, el push a `main` lo
-publica en `/sombras/`. Desde el celular sirve para decidir a qué playa ir
-después del trabajo.
+Cada push a `main` lo publica en https://vitipe.github.io/proyectos-geo/sombras/.
+Si sumás alturas, commiteá `data/alturas.json` y se actualiza solo. Desde el
+celular sirve para decidir a qué playa ir después del trabajo.
 
 ## Archivos
 
@@ -77,7 +102,7 @@ después del trabajo.
 | `web/osm-mdp.js` | Zona, consulta a Overpass, carga del snapshot y de las alturas. Compartido con `/playa-hoy/` |
 | `web/sombras.js` | Geometría: parseo de OSM, alturas, sol, sombras, muestreo, orientación de playas y viento. Sin Leaflet, se puede probar con Node. Compartido con `/playa-hoy/` |
 | `web/app.js` | Mapa, controles, curva de la tarde, edición de alturas |
-| `web/data/osm.json` | Snapshot de OSM (lo generás en la fase 1) |
+| `web/data/osm.json` | Snapshot de OSM (fase 1; ver el comando para regenerarlo) |
 | `web/data/alturas.json` | Pisos cargados a mano (fase 2) |
 
 ## Limitaciones
