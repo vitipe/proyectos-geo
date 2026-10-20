@@ -3,6 +3,8 @@
 Simulador de la sombra de los edificios sobre Playa Grande, Varese, Bristol y La Perla.
 Elegís fecha y hora y el mapa dibuja las sombras; para cada playa calcula qué
 porcentaje está en sombra y desde qué hora la mitad, o casi toda, queda sin sol.
+La arena se pinta según la hora en que cada parte pierde el sol, así se ve dónde
+conviene ponerse.
 
 ## Cómo funciona
 
@@ -14,9 +16,16 @@ porcentaje está en sombra y desde qué hora la mitad, o casi toda, queda sin so
    El largo de la sombra es `(altura + desnivel) / tan(altura del sol)`.
 4. **Sombra de cada edificio:** la envolvente convexa de la planta y la planta
    desplazada en la dirección opuesta al sol.
-5. **Porcentaje de playa en sombra:** se reparten unos 2.500 puntos dentro de cada
-   playa y se cuenta cuántos caen bajo alguna sombra. La curva de la tarde se
-   calcula cada 10 minutos, desde las 14:00 hasta la puesta del sol.
+5. **Porcentaje de playa en sombra:** se reparten unos 2.500 puntos en grilla
+   dentro de cada playa y se cuenta cuántos caen bajo alguna sombra. La curva de
+   la tarde se calcula cada 10 minutos, desde las 14:00 hasta la puesta del sol.
+6. **Sol en la arena:** con esa misma curva, cada punto guarda desde qué hora queda
+   en sombra hasta la puesta. La grilla se pinta como imagen; la escala cubre las
+   2 horas antes de la puesta, que es cuando la mayor parte de la arena pierde el sol.
+7. **Edificios que importan:** al cargar, se prueba cada edificio como si tuviera
+   10 pisos, tres tardes de verano (21/12, 20/1 y 28/2) con el sol a 15° o más.
+   Si su sombra llega a la arena, vale la pena cargar su altura: queda en ámbar.
+   Los demás sin dato quedan casi transparentes.
 
 Todo corre en el navegador. No hay servidor ni preprocesamiento.
 
@@ -62,7 +71,9 @@ regenerar el snapshot.
 ### Fase 2: alturas de los edificios que importan (1–2 sesiones)
 
 Las sombras sobre la playa las proyectan sobre todo las torres de las primeras
-cuadras. Los edificios en ámbar no tienen altura en OSM.
+cuadras. Los edificios en ámbar no tienen altura en OSM y su sombra podría
+llegar a la arena (ver "Edificios que importan"). El panel muestra cuántos faltan:
+en octubre de 2026 eran 338 de 366.
 
 En el snapshot de octubre de 2026, de los edificios a menos de 250 m de cada
 playa tenían altura: Playa Grande 0 de 108, La Perla 11 de 156, Bristol 45 de 131,

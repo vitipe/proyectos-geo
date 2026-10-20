@@ -142,18 +142,36 @@
     return [x0, y0, x1, y1];
   }
 
-  // Puntos de muestreo dentro de una playa, con paso adaptado al tamaño
-  function muestrear(xy, objetivo = 2500) {
+  function area(pol) {
+    let a = 0;
+    for (let i = 0, j = pol.length - 1; i < pol.length; j = i++) a += (pol[j][0] - pol[i][0]) * (pol[j][1] + pol[i][1]);
+    return Math.abs(a / 2);
+  }
+
+  // Grilla regular de puntos dentro de una playa, con paso adaptado al tamaño
+  // (al área de la playa, no a la de su caja: La Perla es larga y en diagonal).
+  // celdas[k] = [i, j] del punto k, para poder pintar la grilla como imagen.
+  function grillaPlaya(xy, objetivo = 2500) {
     const [x0, y0, x1, y1] = caja(xy);
-    const paso = Math.max(2, Math.sqrt(((x1 - x0) * (y1 - y0)) / objetivo));
+    const paso = Math.max(2, Math.sqrt(area(xy) / objetivo));
+    const nx = Math.ceil((x1 - x0) / paso);
+    const ny = Math.ceil((y1 - y0) / paso);
     const puntos = [];
-    for (let x = x0 + paso / 2; x < x1; x += paso) {
-      for (let y = y0 + paso / 2; y < y1; y += paso) {
-        if (dentro([x, y], xy)) puntos.push([x, y]);
+    const celdas = [];
+    for (let i = 0; i < nx; i++) {
+      for (let j = 0; j < ny; j++) {
+        const p = [x0 + (i + 0.5) * paso, y0 + (j + 0.5) * paso];
+        if (dentro(p, xy)) {
+          puntos.push(p);
+          celdas.push([i, j]);
+        }
       }
     }
-    return puntos;
+    return { puntos, celdas, x0, y0, paso, nx, ny };
   }
+
+  // Puntos de muestreo dentro de una playa
+  const muestrear = (xy, objetivo) => grillaPlaya(xy, objetivo).puntos;
 
   // Índice de grilla para no testear cada punto contra todas las sombras
   function indexar(poligonos, celda = 40) {
@@ -183,6 +201,32 @@
     let n = 0;
     for (const p of puntos) if (enSombra(p, indice)) n++;
     return (100 * n) / puntos.length;
+  }
+
+  // Para cada edificio: ¿su sombra llegaría a algún punto de playa si midiera hPrueba?
+  // soles: posiciones del sol a probar. Con el sol más bajo que altMin se usa altMin:
+  // cubre la dirección del atardecer sin sombras que crucen media ciudad.
+  function puedenSombrear(edificiosXY, puntos, soles, hPrueba, altMin) {
+    const celda = 40;
+    const grilla = new Map();
+    for (const p of puntos) {
+      const k = Math.floor(p[0] / celda) + "," + Math.floor(p[1] / celda);
+      if (!grilla.has(k)) grilla.set(k, []);
+      grilla.get(k).push(p);
+    }
+    const toca = (pol) => {
+      const [x0, y0, x1, y1] = caja(pol);
+      for (let cx = Math.floor(x0 / celda); cx <= Math.floor(x1 / celda); cx++) {
+        for (let cy = Math.floor(y0 / celda); cy <= Math.floor(y1 / celda); cy++) {
+          const enCelda = grilla.get(cx + "," + cy);
+          if (enCelda && enCelda.some((p) => dentro(p, pol))) return true;
+        }
+      }
+      return false;
+    };
+    return edificiosXY.map((xy) =>
+      soles.some((s) => toca(sombraEdificio(xy, hPrueba, { ...s, altura: Math.max(s.altura, altMin) }, 0)))
+    );
   }
 
 
@@ -247,7 +291,8 @@
 
   const api = {
     PISO_M, proyeccion, parsearOSM, altura, sol, envolvente, sombraEdificio,
-    dentro, muestrear, indexar, porcentajeSombra, centroide, orientacionPlaya, exposicion,
+    dentro, grillaPlaya, muestrear, indexar, enSombra, porcentajeSombra, puedenSombrear,
+    centroide, orientacionPlaya, exposicion,
   };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else raiz.Sombras = api;

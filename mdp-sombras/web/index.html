@@ -32,6 +32,12 @@
 
     <section>
       <h2>Playas</h2>
+      <div class="leyenda-arena">
+        <div id="rampa" class="rampa"></div>
+        <div class="rampa-etiquetas"><span id="rampa-ini"></span><span id="rampa-fin"></span></div>
+        <p class="nota">La arena se pinta según la hora en que cada parte queda en sombra hasta la puesta:
+          más oscuro, menos sol. Tocá la arena para ver la hora.</p>
+      </div>
       <ul id="playas" class="playas"></ul>
       <div class="grafico"><canvas id="grafico"></canvas></div>
       <p class="nota">Porcentaje de la playa en sombra a lo largo de la tarde. Tocá una playa para ver su curva.</p>
@@ -46,9 +52,12 @@
       <div class="leyenda-edificios">
         <span><i class="e-osm"></i> Altura de OSM</span>
         <span><i class="e-manual"></i> Cargada por vos</span>
-        <span><i class="e-estimada"></i> Sin dato</span>
+        <span><i class="e-estimada"></i> Sin dato, puede dar sombra a la playa</span>
+        <span><i class="e-lejos"></i> Sin dato, no llega a la playa</span>
       </div>
-      <p class="nota">Tocá un edificio para corregir sus pisos. Las correcciones se guardan en este navegador.</p>
+      <p id="progreso" class="dato"></p>
+      <p class="nota">Tocá un edificio para corregir sus pisos. Conviene empezar por los ámbar: si midieran
+        10 pisos, su sombra llegaría a la arena alguna tarde de verano. Las correcciones se guardan en este navegador.</p>
       <div class="fila">
         <button type="button" id="exportar-alturas">Exportar alturas</button>
         <button type="button" id="guardar-osm" hidden>Guardar datos OSM</button>
