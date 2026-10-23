@@ -72,7 +72,9 @@ llegás a Mar del Plata con todo eso resuelto y te enfocás en la costa.
 | `/playa-hoy/` | `mdp-playa-hoy/web` (usa datos y código de `/sombras/`) |
 | `/mdp/` | `mdp-costa/web` (con datos de demostración hasta correr el pipeline) |
 
-`guamini-agua/` no entra en este sitio: se va a publicar en el sitio de nodoagro.
+`guamini-agua/` no entra en este sitio. Lo que se publica en nodoagro es otro
+proyecto: el monitor quincenal con Sentinel-2 del repo `landing-ea`, sin Earth
+Engine (el proyecto GEE es no comercial y NODOAGRO es una empresa).
 
 `.github/workflows/pages.yml` corre ese mismo script y publica en GitHub Pages
 (https://vitipe.github.io/proyectos-geo/) cada vez que hacés push a `main`. En

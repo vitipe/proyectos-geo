@@ -16,7 +16,7 @@ APIs públicas que consultan las páginas.
 | `mdp-sombras/` | `/sombras/` | Funcional con snapshot real de OSM; faltan alturas (la mayoría usa la altura por defecto) |
 | `mdp-playa-hoy/` | `/playa-hoy/` | Funcional con el snapshot de sombras; constantes del modelo sin calibrar |
 | `mdp-costa/` | `/mdp/` | Pipeline escrito pero nunca corrido; `web/data` tiene datos sintéticos |
-| `guamini-agua/` | — | No se publica acá: va al sitio de nodoagro. Pipeline nunca corrido; datos sintéticos |
+| `guamini-agua/` | — | No se publica. Pipeline de Earth Engine nunca corrido; datos sintéticos. Queda de referencia para portar el histórico 1984– (ver abajo) |
 | `sitio/` | `/` | Portada y `comun.css` (tokens de color, modo oscuro, layout mapa + panel) |
 
 ## Correr y verificar
@@ -49,6 +49,16 @@ No hay suite de tests. Para verificar:
   Entorno conda `coastsat` (ver README raíz).
 - Colores definidos como variables en `comun.css`, con modo oscuro. La regla
   `[hidden] { display: none !important; }` está ahí porque `.aviso` pisaba el `hidden`.
+
+## Monitor de nodoagro
+
+El "Guaminí en nodoagro" no sale de esta carpeta: es el monitor quincenal de
+www.nodoagro.com.ar/monitor/, en el repo `vitipe/landing-ea`
+(`sitios-web/landing-consultora`), con Sentinel-2 de Earth Search procesado en
+GitHub Actions. No usa Earth Engine porque el proyecto GEE es no comercial y
+NODOAGRO es una empresa. Por lo mismo, `guamini-agua` no se puede correr con ese
+proyecto para publicar en nodoagro; si se porta el histórico anual de agua, va con
+Landsat de una fuente abierta (fase 5b del plan del monitor).
 
 ## Dependencias entre proyectos
 

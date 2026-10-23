@@ -1,5 +1,10 @@
 # Agua en el partido de Guaminí, 1984–hoy
 
+> **Para nodoagro no se usa esta carpeta.** El monitor publicado en
+> www.nodoagro.com.ar/monitor/ vive en el repo `landing-ea` y usa Sentinel-2 sin
+> Earth Engine, porque el proyecto GEE es no comercial. Este pipeline queda como
+> referencia del método (frecuencia anual de MNDWI) para portar el histórico.
+
 ## Objetivo
 
 Medir año por año la superficie de agua del partido (lagunas y campos
